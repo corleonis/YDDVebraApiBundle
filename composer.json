@@ -1,0 +1,24 @@
+{
+    "name": "ydd/vebra-api-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony2 Bundle for the Vebra API Wrapper",
+    "keywords": ["vebra"],
+    "homepage": "https://github.com/mdavis1982/YDDVebraApiBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Damon Jones",
+            "email": "damon@yummyduckdesign.co.uk",
+            "homepage": "http://yummyduckdesign.co.uk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "ydd/vebra": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "YDD\\VebraApiBundle": ""
+        }
+    }
+}
