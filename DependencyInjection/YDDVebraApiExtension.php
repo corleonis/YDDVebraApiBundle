@@ -26,7 +26,7 @@ class YDDVebraApiExtension extends Extension
         $loader->load('services.xml');
 
         foreach ($config as $key => $value) {
-            $container->setParameter('vebra.' . $key, $value);
+            $container->setParameter('ydd_vebra_api.' . $key, $value);
         }
     }
 }
