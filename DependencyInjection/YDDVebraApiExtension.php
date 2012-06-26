@@ -20,13 +20,13 @@ class YDDVebraApiExtension extends Extension
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $configs = $this->processConfiguration($configuration, $configs);
+        $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
-        foreach ($configs as $key => $value) {
-            $container->setParameter('ydd_vebra_api.' . $key, $value);
+        foreach ($config as $key => $value) {
+            $container->setParameter('vebra.' . $key, $value);
         }
     }
 }
