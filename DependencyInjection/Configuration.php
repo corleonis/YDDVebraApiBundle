@@ -24,7 +24,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('username')->isRequired()->cannotBeEmpty()->end()
                 ->scalarNode('password')->isRequired()->cannotBeEmpty()->end()
                 ->scalarNode('data_feed_id')->isRequired()->cannotBeEmpty()->end()
-                ->scalarNode('token_directory')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('token_storage_class')->end()
+                ->scalarNode('token_storage_directory')->end()
+                ->scalarNode('client_class')->end()
             ->end();
 
         return $treeBuilder;

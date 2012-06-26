@@ -5,25 +5,28 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="buzz.client_class">Buzz\Client\Curl</parameter>
-        <parameter key="vebra.token_storage_class">YDD\Vebra\TokenStorage\File</parameter>
+        <parameter key="ydd_vebra_api.client_class">Buzz\Client\Curl</parameter>
+        <parameter key="ydd_vebra_api.token_storage_class">YDD\Vebra\TokenStorage\File</parameter>
+        <parameter key="ydd_vebra_api.token_storage_directory">%kernel.root_dir%/Resources/data/tokens/</parameter>
     </parameters>
 
     <services>
-        <service id="buzz.client" class="%buzz.client_class%" />
-        <service id="buzz.message_factory" class="Buzz\Message\Factory\Factory" />
+        <service id="ydd_vebra_api.client" class="%ydd_vebra_api.client_class%" public="false" />
+        <service id="ydd_vebra_api.message_factory" class="Buzz\Message\Factory\Factory" public="false" />
 
-        <service id="vebra.token_storage" class="%vebra.token_storage_class%">
-            <argument>%vebra.username%</argument>
-            <argument>%vebra.token_directory%</argument>
+        <service id="ydd_vebra_api.token_storage" class="%ydd_vebra_api.token_storage_class%" public="false">
+            <argument>%ydd_vebra_api.username%</argument>
+            <argument>%ydd_vebra_api.token_storage_directory%</argument>
         </service>
-        <service id="vebra.api" class="YDD\Vebra\API">
-            <argument>%vebra.data_feed_id%</argument>
-            <argument>%vebra.username%</argument>
-            <argument>%vebra.password%</argument>
-            <argument type="service" id="vebra.token_storage" />
-            <argument type="service" id="buzz.client" />
-            <argument type="service" id="buzz.message_factory" />
+        <service id="ydd_vebra_api.api" class="YDD\Vebra\API" public="false">
+            <argument>%ydd_vebra_api.data_feed_id%</argument>
+            <argument>%ydd_vebra_api.username%</argument>
+            <argument>%ydd_vebra_api.password%</argument>
+            <argument type="service" id="ydd_vebra_api.token_storage" />
+            <argument type="service" id="ydd_vebra_api.client" />
+            <argument type="service" id="ydd_vebra_api.message_factory" />
         </service>
+
+        <service id="vebra.api" alias="ydd_vebra_api.api" />
     </services>
 </container>
